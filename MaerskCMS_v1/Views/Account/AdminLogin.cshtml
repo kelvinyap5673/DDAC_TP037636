@@ -1,0 +1,39 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Admin Login | Maersk Line CMS";
+}
+
+@model MaerskCMS_v1.Models.LoginModel
+
+@using (Html.BeginForm("AdminLoginAction", "Account", FormMethod.Post))
+{
+    <div class="container">
+        <h1>Admin Login | Maersk Line CMS</h1>
+        <p class="lead">Please enter login details before continue... </p>
+    </div>
+
+    <div class="container">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Username)
+            @Html.TextBoxFor(model => model.Username, new { @class = "form-control", @placeholder = "Enter Username Here" })
+            @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password)
+            @Html.PasswordFor(model => model.Password, new { @class = "form-control", @placeholder = "Enter Password Here" })
+            <small id="usernameHelp" class="form-text text-muted">Forgot password? Please contact Maersk Line Personnel.  </small>
+            <div class="form-row">
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <hr />
+        <div class="form-row col-sm-4">
+
+            <button type="submit" class="btn btn-primary col-sm-6" id="loginbtn">Log In</button>
+
+            <button type="reset" class="btn btn-dark col-sm-6" id="resetbtn">Reset</button>
+        </div>
+        <hr />
+    </div>
+}

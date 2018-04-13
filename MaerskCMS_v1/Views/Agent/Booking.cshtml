@@ -1,0 +1,62 @@
+﻿@model IEnumerable<MaerskCMS_v1.Models.AgentChooseScheduleViewModel>
+
+@{
+    ViewBag.Title = "Booking";
+    Layout = "~/Views/Shared/_AgentLayout.cshtml";
+}
+
+<h2>Booking</h2>
+<h3>Please select a desired schedule of the shipping before continue the booking process. </h3>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.POD)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.POA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Departure)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Arrival)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SpaceAvailable)
+        </th>
+        <th></th>
+    </tr>
+
+    @if (Model != null)
+    {
+        foreach (var item in Model) { 
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.POD)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.POA)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Departure)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Arrival)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SpaceAvailable)
+                </td>
+                <td>
+                    @Html.ActionLink("Select", "ChooseSchedule", new { id = item.ID })
+                </td>
+            </tr>
+        }
+    }
+
+
+</table>
+
+@if(Model == null)
+{
+    <h4>No Shipping Schedule is available. </h4>
+}

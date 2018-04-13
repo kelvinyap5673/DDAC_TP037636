@@ -1,0 +1,163 @@
+﻿@model MaerskCMS_v1.Models.AgentShipmentDetailsViewModel
+
+@{
+    ViewBag.Title = "ShipmentDetails";
+    Layout = "~/Views/Shared/_AgentLayout.cshtml";
+}
+
+<h2>Shipment Details</h2>
+
+<div>
+    <h4>Here is the detail of the shipment. </h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.POD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.POD)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.POA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.POA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Departure)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Departure)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Arrival)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Arrival)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContractNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContractNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShipperName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShipperName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShipperAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShipperAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ConsigneeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ConsigneeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ConsigneeAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ConsigneeAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Commodity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Commodity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContainerType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContainerType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PackagesAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PackagesAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KindOfPackages)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KindOfPackages)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Weight)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Weight)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Volume)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Volume)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Delete", "DeleteShipment", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

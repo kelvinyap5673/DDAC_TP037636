@@ -1,0 +1,113 @@
+﻿@model MaerskCMS_v1.Models.RegisterModel
+
+@{
+    ViewBag.Title = "New Agent Sign Up | Maersk Line CMS";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Agent Login | Maersk Line CMS</h1>
+
+
+@using (Html.BeginForm("SignUpAction", "Account", FormMethod.Post)) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <p>Please enter the details below. An approval will be done by the Maersk Line Personnel before start using the CMS Portal. <br />For more information, please contact us <a href="/Home/Contact">here</a>. </p>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control", @id = "usernameform" } })
+            @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger", @id="usernamemsg" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.EmailAddress, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.EmailAddress, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.EmailAddress, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" id="signup" value="Sign Up" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to Home", "Index", "Home")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script>
+    $("#usernameform").focusout(function () {
+        if ($("#usernameform").val() != "") {
+            $.post("@Url.Action("CheckAvailableUser", "Account")",
+                {
+                    userdata: $("#usernameform").val()
+                },
+                function (data) {
+                    if (data == 0) {
+                        $("#usernamemsg").html('<font color="Green">This Username is Available. </font>');
+                        $("#signup").removeAttr("disabled");
+                    }
+                    else if (data == 1) {
+                        $("#usernamemsg").html('<font color="Red">This Username is Not Available. </font>');
+                        $("#signup").attr("disabled", "disabled");
+                    }
+                    else {
+                        $("#usernamemsg").html('<font color="Red">Unable to connect to Database. Please try again. </font>');
+                        $("#signup").attr("disabled", "disabled");
+                    }
+                }
+            )
+        }
+        else {
+            $("#usernamemsg").html('');
+        }
+        }
+    );
+</script>

@@ -1,0 +1,52 @@
+﻿@model IEnumerable<MaerskCMS_v1.Models.AgentScheduleListViewModel>
+
+@{
+    ViewBag.Title = "ShippingS chedule";
+    Layout = "~/Views/Shared/_AgentLayout.cshtml";
+}
+
+<h2>Shipping Schedule</h2>
+
+<p>
+    @Html.ActionLink("Book New Shipment", "Booking")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.VesselName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.POD)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.POA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Departure)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Arrival)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.VesselName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.POD)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.POA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Departure)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Arrival)
+        </td>
+    </tr>
+}
+
+</table>

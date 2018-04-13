@@ -1,0 +1,54 @@
+﻿@model IEnumerable<MaerskCMS_v1.Models.CustomerListViewModel>
+
+@{
+    ViewBag.Title = "Customers";
+    Layout = "~/Views/Shared/_AgentLayout.cshtml";
+}
+
+<h2>Customers</h2>
+
+<p>
+    @Html.ActionLink("Create New Customer", "AddNewCustomer")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AddedDT)
+        </th>
+        <th></th>
+    </tr>
+
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AddedDT)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "EditCustomer", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "DeleteCustomer", new { id = item.ID })
+                </td>
+            </tr>
+        }
+    }
+
+</table>
+
+@if(Model == null)
+{
+    <h4>No Customer Record Found. </h4>
+}

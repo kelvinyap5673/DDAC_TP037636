@@ -1,0 +1,71 @@
+﻿@model IEnumerable<MaerskCMS_v1.Models.AgentShipmentViewModel>
+
+@{
+    ViewBag.Title = "Shipments";
+    Layout = "~/Views/Shared/_AgentLayout.cshtml";
+}
+
+<h2>Shipments</h2>
+
+<p>
+    @Html.ActionLink("Book New Shipment", "Booking")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.POD)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.POA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Departure)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Arrival)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th></th>
+    </tr>
+
+    @if (Model != null)
+    {
+        foreach (var item in Model) { 
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.POD)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.POA)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Departure)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Arrival)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "ShipmentDetails", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "DeleteShipment", new { id = item.ID })
+                </td>
+            </tr>
+        }
+    }
+
+
+</table>
+@if(Model == null)
+{
+<h4>No shipment found. Please consider booking a new shipment @Html.ActionLink("HERE", "Booking"). </h4>
+}

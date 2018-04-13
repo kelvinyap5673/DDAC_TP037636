@@ -1,0 +1,53 @@
+﻿@model IEnumerable<MaerskCMS_v1.Models.ManageVesselViewModel>
+
+@{
+    ViewBag.Title = "Manage Vessel";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Manage Vessel</h2>
+
+<p>
+    @Html.ActionLink("Create New Vessel", "AddNewVessel")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.VesselName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VesselDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VesselSize)
+        </th>
+        <th></th>
+    </tr>
+
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VesselName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VesselDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VesselSize)
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "DeleteVessel", new { id = item.ID })
+                </td>
+            </tr>
+        }
+    }
+
+</table>
+
+@if (Model == null)
+{
+    <h4>No Vessel found. Please create a new Vessel. </h4>
+}

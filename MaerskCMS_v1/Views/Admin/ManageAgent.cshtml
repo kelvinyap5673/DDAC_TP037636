@@ -1,0 +1,131 @@
+﻿
+@{
+    /**/
+
+    ViewBag.Title = "ManageAgent";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@model IEnumerable<MaerskCMS_v1.Models.AgentModel>
+
+<h2>Manage Agent</h2>
+<hr />
+<h3>Agent List</h3>
+@{
+    int count = 0;
+    <table class="table table-striped table-hover " id="datatable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>E-mail Address</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                    if (item.Status == true)
+                    {
+                        <tr>
+                            <td>
+                                @item.ID
+                            </td>
+                            <td>
+                                @item.Username
+                            </td>
+                            <td>
+                                @item.FirstName
+                            </td>
+                            <td>
+                                @item.LastName
+                            </td>
+                            <td>
+                                @item.Email
+                            </td>
+                            <td>
+                                @Html.ActionLink("Delete", "AdminDeleteAgent", new { id = item.ID })
+                            </td>
+                        </tr>
+                        count++;
+                    }
+                }
+            }
+
+        </tbody>
+    </table>
+
+    if (count == 0)
+    {
+        <h4>No agent found. </h4>
+    }
+}
+<br />
+<hr />
+<h3>New Registration to be Approved</h3>
+@{
+    int count2 = 0;
+    <table class="table table-striped table-hover " id="datatable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Password</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>E-mail Address</th>
+                <th>Submitted On</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                    if (item.Status == false)
+                    {
+                        <tr>
+                            <td>
+                                @item.ID
+                            </td>
+                            <td>
+                                @item.Username
+                            </td>
+                            <td>
+                                *****
+                            </td>
+                            <td>
+                                @item.FirstName
+                            </td>
+                            <td>
+                                @item.LastName
+                            </td>
+                            <td>
+                                @item.Email
+                            </td>
+                            <td>
+                                @item.Registration
+                            </td>
+                            <td>
+                                @Html.ActionLink("Approve", "AdminApproval", new { id = item.ID })
+                                |
+                                @Html.ActionLink("Reject", "AdminDeleteAgent", new { id = item.ID })
+                            </td>
+                        </tr>
+                        count2++;
+                    }
+                }
+            }
+
+        </tbody>
+    </table>
+
+    if (count2 == 0)
+    {
+        <h4>No new agent registration to be approved. </h4>
+    }
+}
